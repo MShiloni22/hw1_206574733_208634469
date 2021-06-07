@@ -3,6 +3,8 @@ public class WarGame {
     Player player2;
     Deck player1Deck;
     Deck player2Deck;
+    static final int PLAYER_1_WON = 1;
+    static final int PLAYER_2_WON = -1;
 
     public WarGame(String name1, String name2){
         int namesComparison = name1.compareTo(name2);
@@ -43,7 +45,16 @@ public class WarGame {
             System.out.println(this.player1 + "drew" + player1Card);
             Card player2Card = this.player1.drawCard();
             System.out.println(this.player1 + "drew" + player2Card);
+            int cardCompare = player1Card.compare(player2Card);
+            if (cardCompare == PLAYER_1_WON){
 
+            }
+            else if (cardCompare == PLAYER_2_WON){
+
+            }
+            else{
+
+            }
         }
     }
 }
