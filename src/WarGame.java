@@ -5,6 +5,7 @@ public class WarGame {
     Deck player2Deck;
     static final int PLAYER_1_WON = 1;
     static final int PLAYER_2_WON = -1;
+    static final int WAR_COUNTER = 2;
 
     public WarGame(String name1, String name2){
         int namesComparison = name1.compareTo(name2);
@@ -37,24 +38,66 @@ public class WarGame {
         this.initializeGame();
         int roundsCounter = 0;
         while (true){
+            // Checks if one of the players lost all his cards
             if (this.player1.outOfCards()) return this.player2.getName();
             if (this.player2.outOfCards()) return this.player1.getName();
+
+            // Beginning a new round
             System.out.println("------------------------- Round number " + ++roundsCounter +
                     "-------------------------");
-            Card player1Card = this.player1.drawCard();
-            System.out.println(this.player1 + "drew" + player1Card);
-            Card player2Card = this.player1.drawCard();
-            System.out.println(this.player1 + "drew" + player2Card);
-            int cardCompare = player1Card.compare(player2Card);
-            if (cardCompare == PLAYER_1_WON){
+            boolean isRoundFinished = false;
+            while (!isRoundFinished){
+                drawAndDeclare(this.player1, this.player1Deck, this.player1 + "drew" + player1Deck.deck.get(0));
+                drawAndDeclare(this.player2, this.player2Deck, this.player2 + "drew" + player2Deck.deck.get(0));
 
-            }
-            else if (cardCompare == PLAYER_2_WON){
+                // The comparison, after each player drew a card
+                int cardCompare = player1Deck.deck.get(0).compare(player2Deck.deck.get(0));
+                int tempDeckSize = player1Deck.deck.size();
+                if (cardCompare == PLAYER_1_WON){
+                    cardsCollector(this.player1, tempDeckSize);
+                    isRoundFinished = true;
+                }
+                else if (cardCompare == PLAYER_2_WON){
+                    cardsCollector(this.player2, tempDeckSize);
+                    isRoundFinished = true;
+                }
+                else{
+                    // Checks if one of the players lost all his cards, before drawing again
+                    if (this.player1.outOfCards()) return this.player2.getName();
+                    if (this.player2.outOfCards()) return this.player1.getName();
 
-            }
-            else{
+                    System.out.println("Starting a war...");
+                    for (int i = 0; i < WAR_COUNTER; i++) {
+                        // Checks if one of the players lost all his cards, before drawing again
+                        if (this.player1.outOfCards()) return this.player2.getName();
+                        if (this.player2.outOfCards()) return this.player1.getName();
 
+                        drawAndDeclare(this.player1, this.player1Deck, this.player1 + "drew a war card");
+                        drawAndDeclare(this.player2, this.player2Deck, this.player2 + "drew a war card");
+                    }
+
+                    // Checks if one of the players lost all his cards, before drawing again
+                    if (this.player1.outOfCards()) return this.player2.getName();
+                    if (this.player2.outOfCards()) return this.player1.getName();
+                }
             }
         }
+    }
+
+    // Collects the cards to the winner's wins deck, in the right order & declaring who won the round
+    public void cardsCollector(Player winner, int tempDeckSize){
+        for (int i = 0; i < tempDeckSize; i++){
+            Card cardFromPlayer2 = player2Deck.removeTopCard();
+            Card cardFromPlayer1 = player1Deck.removeTopCard();
+            winner.winDeck.addCard(cardFromPlayer2);
+            winner.winDeck.addCard(cardFromPlayer1);
+        }
+        System.out.println(winner + "won");
+    }
+
+    // Combine the draw action and the following declaration, according to relevant stage in the game (war/regular)
+    public void drawAndDeclare(Player currentPlayer, Deck currentPlayerDeck, String message){
+        currentPlayerDeck.addCard(currentPlayer.drawCard());
+        System.out.println(message);
     }
 }
