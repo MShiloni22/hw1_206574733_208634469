@@ -10,4 +10,8 @@ public class Player {
         this.gameDeck = new Deck(false);
         this.winDeck = new Deck(false);
     }
+
+    public String getName(){return this.name;}
+
+
 }

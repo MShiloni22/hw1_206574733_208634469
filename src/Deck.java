@@ -12,7 +12,7 @@ public class Deck {
 
 
     public void addCard(Card card){
-        deck.add(0, new Card(card.number, card.shape));
+        deck.add(0, card);
     }
 
     public Card removeTopCard(){
