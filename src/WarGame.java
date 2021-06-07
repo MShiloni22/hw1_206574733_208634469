@@ -28,5 +28,22 @@ public class WarGame {
             Card cardToPlayer2 = beginningDeck.removeTopCard();
             this.player1.gameDeck.addCard(cardToPlayer2);
         }
+        System.out.println("Initializing the game...");
+    }
+
+    public String start(){
+        this.initializeGame();
+        int roundsCounter = 0;
+        while (true){
+            if (this.player1.outOfCards()) return this.player2.getName();
+            if (this.player2.outOfCards()) return this.player1.getName();
+            System.out.println("------------------------- Round number " + ++roundsCounter +
+                    "-------------------------");
+            Card player1Card = this.player1.drawCard();
+            System.out.println(this.player1 + "drew" + player1Card);
+            Card player2Card = this.player1.drawCard();
+            System.out.println(this.player1 + "drew" + player2Card);
+
+        }
     }
 }
