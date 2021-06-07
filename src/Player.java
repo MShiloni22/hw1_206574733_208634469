@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Player {
     private final String name;
     Deck gameDeck;
@@ -18,7 +16,18 @@ public class Player {
     }
 
     public boolean outOfCards(){
-        return (this.gameDeck.isEmpty() && this.winDeck.isEmpty());
+        if (this.gameDeck.isEmpty()){
+            if (this.winDeck.isEmpty()) return true;
+
+            // If winDeck isn't empty, do the following (and eventually return true):
+            this.winDeck.shuffle();
+            this.gameDeck = this.winDeck;
+            int winDeckSize = this.winDeck.deck.size();
+            for (int i = 0; i < winDeckSize; i++) {
+                this.winDeck.removeTopCard();
+            }
+        }
+        return false;
     }
 
     @Override
