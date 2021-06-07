@@ -24,7 +24,7 @@ public class Card {
 
     @Override
     public String toString (){
-        System.out.println(this.number + "of" + this.shape);
+        System.out.println(this.number + " of " + this.shape);
         return null;
     }
 

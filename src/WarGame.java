@@ -47,8 +47,10 @@ public class WarGame {
                     "-------------------------");
             boolean isRoundFinished = false;
             while (!isRoundFinished){
-                drawAndDeclare(this.player1, this.player1Deck, this.player1 + "drew" + player1Deck.deck.get(0));
-                drawAndDeclare(this.player2, this.player2Deck, this.player2 + "drew" + player2Deck.deck.get(0));
+                drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew "
+                        + player1Deck.deck.get(0));
+                drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew "
+                        + player2Deck.deck.get(0));
 
                 // The comparison, after each player drew a card
                 int cardCompare = player1Deck.deck.get(0).compare(player2Deck.deck.get(0));
@@ -72,8 +74,8 @@ public class WarGame {
                         if (this.player1.outOfCards()) return this.player2.getName();
                         if (this.player2.outOfCards()) return this.player1.getName();
 
-                        drawAndDeclare(this.player1, this.player1Deck, this.player1 + "drew a war card");
-                        drawAndDeclare(this.player2, this.player2Deck, this.player2 + "drew a war card");
+                        drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew a war card");
+                        drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew a war card");
                     }
 
                     // Checks if one of the players lost all his cards, before drawing again
@@ -92,7 +94,7 @@ public class WarGame {
             winner.winDeck.addCard(cardFromPlayer2);
             winner.winDeck.addCard(cardFromPlayer1);
         }
-        System.out.println(winner + "won");
+        System.out.println(winner + " won");
     }
 
     // Combine the draw action and the following declaration, according to relevant stage in the game (war/regular)
