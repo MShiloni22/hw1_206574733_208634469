@@ -39,7 +39,7 @@ public class Deck {
     public Deck (boolean toCreate) {
         this.deck = new ArrayList<>();
         this.toCreate = toCreate;
-        if (toCreate) {
+        if (this.toCreate) {
             for (Shape shape : Shape.values()) {
                 for (int j = 0; j < SHAPES_AMOUNT; j++) {
                     for (int i = 1; i < NUMBERS_AMOUNT; i++) {
