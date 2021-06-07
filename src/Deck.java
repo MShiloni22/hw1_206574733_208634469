@@ -16,7 +16,7 @@ public class Deck {
     }
 
     public Card removeTopCard(){
-        Card removed = new Card(deck.get(0)); //uses clone builder
+        Card removed = (deck.get(0)); //uses clone builder
         deck.remove(0);
         return  removed;
     }
