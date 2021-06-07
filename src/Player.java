@@ -13,4 +13,16 @@ public class Player {
 
     public String getName(){return this.name;}
 
+    public Card drawCard(){
+        return this.gameDeck.removeTopCard();
+    }
+
+    public boolean outOfCards(){
+        return (this.gameDeck.isEmpty() && this.winDeck.isEmpty());
+    }
+
+    @Override
+    public String toString(){
+        return this.name;
+    }
 }
