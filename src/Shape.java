@@ -14,5 +14,3 @@ enum Shape{
         return this.symbol;
     }
 }
-
-//nimrods first commit
