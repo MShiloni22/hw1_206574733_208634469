@@ -1,0 +1,43 @@
+
+public class Card {
+    final int number;
+    final boolean representPicture;
+    final String shape;
+
+    public int getNumber(){
+        return number;
+    }
+
+    public String getShape(){
+        return shape;
+    }
+
+    public boolean getRepresentPicture(){
+        return representPicture;
+    }
+
+    public int compare (Card card, Card other){
+        if (card.number < other.number) return -1;
+        else if (card.number > other.number) return 1;
+        else return 0;
+    }
+
+    @Override
+    public String toString (){
+        System.out.println(this.number + "of" + this.shape);
+        return null;
+    }
+
+    public Card(int number, String shape){
+        this.number = number;
+        this.representPicture = (2 > number || number > 10);
+        this.shape = shape;
+    }
+
+    //clone builder
+    public Card(Card other){
+        this.number = other.number;
+        this.representPicture = other.representPicture;
+        this.shape = other.shape;
+    }
+}
