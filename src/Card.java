@@ -16,9 +16,9 @@ public class Card {
         return representPicture;
     }
 
-    public int compare (Card card, Card other){
-        if (card.number < other.number) return -1;
-        else if (card.number > other.number) return 1;
+    public int compare (Card other){
+        if (this.number < other.number) return -1;
+        else if (this.number > other.number) return 1;
         else return 0;
     }
 
