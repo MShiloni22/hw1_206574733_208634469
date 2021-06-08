@@ -64,8 +64,8 @@ public class WarGame {
                     "-------------------------");
             boolean isRoundFinished = false;
             while (!isRoundFinished){
-                drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew ");
-                drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew ");
+                drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew ", false);
+                drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew ", false);
 
                 // The comparison, after each player drew a card
                 // i think here we have wrong comparison. you already drew a card. you now use the next card, no?
@@ -90,8 +90,10 @@ public class WarGame {
                         if (this.player1.outOfCards()) return this.player2.getName();
                         if (this.player2.outOfCards()) return this.player1.getName();
 
-                        drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew a war card");
-                        drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew a war card");
+                        drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew a war card",
+                                true);
+                        drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew a war card",
+                                true);
                     }
 
                     // Checks if one of the players lost all his cards, before drawing again
@@ -114,8 +116,12 @@ public class WarGame {
     }
 
     // Combine the draw action and the following declaration, according to relevant stage in the game (war/regular)
-    public void drawAndDeclare(Player currentPlayer, Deck currentPlayerDeck, String message){
+    public void drawAndDeclare(Player currentPlayer, Deck currentPlayerDeck, String message, boolean isWar){
         currentPlayerDeck.addCard(currentPlayer.drawCard());
+        if (isWar){
+            System.out.println(message);
+            return;
+        }
         System.out.println(message + currentPlayerDeck.deck.get(0));
     }
 }
