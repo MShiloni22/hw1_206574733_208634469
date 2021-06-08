@@ -109,15 +109,26 @@ public class WarGame {
 
     // Collects the cards to the winner's wins deck, in the right order & declaring who won the round
     public void cardsCollector(Player winner, int tempDeckSize){
-        for (int i = 0; i < tempDeckSize; i++){
-            Card cardFromPlayer2 = player2Deck.removeTopCard();
-            Card cardFromPlayer1 = player1Deck.removeTopCard();
-            winner.winDeck.addCard(cardFromPlayer2);
-            winner.winDeck.addCard(cardFromPlayer1);
+        if (tempDeckSize>2) {
+            for (int i = 0; i < tempDeckSize; i++) {
+                Card cardFromPlayer2 = player2Deck.removeTopCard();
+                Card cardFromPlayer1 = player1Deck.removeTopCard();
+                winner.winDeck.addCard(cardFromPlayer2);
+                winner.winDeck.addCard(cardFromPlayer1);
+            }
+            System.out.println(winner + " won the war");
         }
-        if (tempDeckSize>2) { System.out.println(winner + " won the war"); }
-        else { System.out.println(winner + " won"); }
+        else {
+            for (int i = 0; i < tempDeckSize; i++) {
+                Card cardFromPlayer2 = player2Deck.removeTopCard();
+                Card cardFromPlayer1 = player1Deck.removeTopCard();
+                winner.winDeck.addCard(cardFromPlayer2);
+                winner.winDeck.addCard(cardFromPlayer1);
+            System.out.println(winner + " won");
+            }
+        }
     }
+
 
     // Combine the draw action and the following declaration, according to relevant stage in the game (war/regular)
     public void drawAndDeclare(Player currentPlayer, Deck currentPlayerDeck, String message, boolean isWar){
