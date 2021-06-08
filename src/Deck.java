@@ -46,6 +46,16 @@ public class Deck {
         }
     }
 
+    void upsideDownDeck(){
+        int size = this.deck.size();
+        for (int i=0; i < size/2 /*?*/; i++){
+            Card tmp = this.deck.get(i); //int tmp = a[0]
+            this.deck.set(i, this.deck.get(size-1-i)); //a[0] = a[size-1]
+            this.deck.set(size-i-1, tmp);//a[size-1] = tmp
+        }
+
+    }
+
     public Deck(boolean toCreate) {
         this.deck = new ArrayList<>();
         this.toCreate = toCreate;
