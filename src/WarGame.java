@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class WarGame {
@@ -9,6 +8,10 @@ public class WarGame {
     static final int PLAYER_1_WON = 1;
     static final int PLAYER_2_WON = -1;
     static final int WAR_COUNTER = 2;
+    private boolean isWar;
+
+    public boolean getIsWar(){return this.isWar;}
+    public void setIsWar(boolean parameter){this.isWar = parameter;}
 
     public WarGame(String name1, String name2){
         int namesComparison = name1.compareTo(name2);
@@ -65,7 +68,7 @@ public class WarGame {
 
             // Beginning a new round
             System.out.println("------------------------- Round number " + ++roundsCounter +
-                    "-------------------------");
+                    " -------------------------");
             boolean isRoundFinished = false;
             while (!isRoundFinished){
                 drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew ", false);
@@ -76,11 +79,11 @@ public class WarGame {
                 int cardCompare = player1Deck.deck.get(0).compare(player2Deck.deck.get(0));
                 int tempDeckSize = player1Deck.deck.size();
                 if (cardCompare == PLAYER_1_WON){
-                    cardsCollector(this.player1, tempDeckSize);
+                    cardsCollector(this.player1, tempDeckSize, this.getIsWar());
                     isRoundFinished = true;
                 }
                 else if (cardCompare == PLAYER_2_WON){
-                    cardsCollector(this.player2, tempDeckSize);
+                    cardsCollector(this.player2, tempDeckSize, this.getIsWar());
                     isRoundFinished = true;
                 }
                 else{
@@ -89,15 +92,16 @@ public class WarGame {
                     if (this.player2.outOfCards()) return this.player1.getName();
 
                     System.out.println("Starting a war...");
+                    this.setIsWar(true);
                     for (int i = 0; i < WAR_COUNTER; i++) {
                         // Checks if one of the players lost all his cards, before drawing again
                         if (this.player1.outOfCards()) return this.player2.getName();
                         if (this.player2.outOfCards()) return this.player1.getName();
 
                         drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew a war card",
-                                true);
+                                this.getIsWar());
                         drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew a war card",
-                                true);
+                                this.getIsWar());
                     }
 
                     // Checks if one of the players lost all his cards, before drawing again
@@ -109,35 +113,22 @@ public class WarGame {
     }
 
     // Collects the cards to the winner's wins deck, in the right order & declaring who won the round
-    public void cardsCollector(Player winner, int tempDeckSize){
-        for (int i = 0; i < tempDeckSize; i++) {
+    public void cardsCollector(Player winner, int tempDeckSize, boolean isWar){
+        for (int i = 0; i < tempDeckSize; i++){
             Card cardFromPlayer2 = player2Deck.removeTopCard();
             Card cardFromPlayer1 = player1Deck.removeTopCard();
             winner.winDeck.addCard(cardFromPlayer2);
             winner.winDeck.addCard(cardFromPlayer1);
         }
-        if (tempDeckSize > 2) {System.out.println(winner + " won the war");}
-        else System.out.println(winner + " won");
-            /*ArrayList<Card> temp = new ArrayList<>();
-            for (int i = 0; i < tempDeckSize; i++) {
-                temp.add(player2Deck.removeTopCard());
-                temp.add(player1Deck.removeTopCard());
-            }
-            for (int i = tempDeckSize-1; i >= 0; i--){
-                winner.winDeck.addCard(temp.get(i));
-            }
+        if (isWar){
             System.out.println(winner + " won the war");
+            this.setIsWar(false);
         }
-        else {
-            for (int i = 0; i < tempDeckSize; i++) {
-                Card cardFromPlayer2 = player2Deck.removeTopCard();
-                Card cardFromPlayer1 = player1Deck.removeTopCard();
-                winner.winDeck.addCard(cardFromPlayer2);
-                winner.winDeck.addCard(cardFromPlayer1);
+        else{
             System.out.println(winner + " won");
-            }*/
-    }
+        }
 
+    }
 
     // Combine the draw action and the following declaration, according to relevant stage in the game (war/regular)
     public void drawAndDeclare(Player currentPlayer, Deck currentPlayerDeck, String message, boolean isWar){
@@ -148,4 +139,5 @@ public class WarGame {
         }
         System.out.println(message + currentPlayerDeck.deck.get(0));
     }
+
 }
