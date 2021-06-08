@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class WarGame {
@@ -109,12 +110,21 @@ public class WarGame {
 
     // Collects the cards to the winner's wins deck, in the right order & declaring who won the round
     public void cardsCollector(Player winner, int tempDeckSize){
-        if (tempDeckSize>2) {
+        for (int i = 0; i < tempDeckSize; i++) {
+            Card cardFromPlayer2 = player2Deck.removeTopCard();
+            Card cardFromPlayer1 = player1Deck.removeTopCard();
+            winner.winDeck.addCard(cardFromPlayer2);
+            winner.winDeck.addCard(cardFromPlayer1);
+        }
+        if (tempDeckSize > 2) {System.out.println(winner + " won the war");}
+        else System.out.println(winner + " won");
+            /*ArrayList<Card> temp = new ArrayList<>();
             for (int i = 0; i < tempDeckSize; i++) {
-                Card cardFromPlayer2 = player2Deck.removeTopCard();
-                Card cardFromPlayer1 = player1Deck.removeTopCard();
-                winner.winDeck.addCard(cardFromPlayer2);
-                winner.winDeck.addCard(cardFromPlayer1);
+                temp.add(player2Deck.removeTopCard());
+                temp.add(player1Deck.removeTopCard());
+            }
+            for (int i = tempDeckSize-1; i >= 0; i--){
+                winner.winDeck.addCard(temp.get(i));
             }
             System.out.println(winner + " won the war");
         }
@@ -125,8 +135,7 @@ public class WarGame {
                 winner.winDeck.addCard(cardFromPlayer2);
                 winner.winDeck.addCard(cardFromPlayer1);
             System.out.println(winner + " won");
-            }
-        }
+            }*/
     }
 
 
