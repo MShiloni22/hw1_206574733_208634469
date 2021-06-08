@@ -8,12 +8,13 @@ public class WarGame {
     static final int PLAYER_1_WON = 1;
     static final int PLAYER_2_WON = -1;
     static final int WAR_COUNTER = 2;
-    private boolean isWar;
+    private boolean isWar; // Will help determine if there is a war going on or not
 
     public boolean getIsWar(){return this.isWar;}
     public void setIsWar(boolean parameter){this.isWar = parameter;}
 
     public WarGame(String name1, String name2){
+        // Determine who is the first and the second player by a lexicographic comparison
         int namesComparison = name1.compareTo(name2);
         if (namesComparison < 0){
             this.player1 = new Player(name1);
@@ -23,6 +24,7 @@ public class WarGame {
             this.player1 = new Player(name2);
             this.player2 = new Player(name1);
         }
+        // Create a special deck for placing the cards after drawing them throughout the game
         this.player1Deck = new Deck(false);
         this.player2Deck = new Deck(false);
     }
@@ -30,13 +32,14 @@ public class WarGame {
     public void initializeGame(){
         Deck beginningDeck = new Deck(true);
         beginningDeck.shuffle();
-        Collections.reverse(beginningDeck.deck);
+        Collections.reverse(beginningDeck.deck); // In order to split the cards according to expected
         int beginningDeckSize = Deck.DECK_SIZE;
         for (int i = 0; i < beginningDeckSize/2; i++) {
             this.player2.gameDeck.addCard(beginningDeck.removeTopCard());
             this.player1.gameDeck.addCard(beginningDeck.removeTopCard());
 
         }
+        // In order to split the cards according to expected:
         Collections.reverse(this.player1.gameDeck.deck);
         Collections.reverse(this.player2.gameDeck.deck);
         System.out.println("Initializing the game...");
@@ -87,7 +90,6 @@ public class WarGame {
                         drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew a war card",
                                 this.getIsWar());
                     }
-
                     // Checks if one of the players lost all his cards, before drawing again
                     if (this.player1.outOfCards()) return this.player2.getName();
                     if (this.player2.outOfCards()) return this.player1.getName();
