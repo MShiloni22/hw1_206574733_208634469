@@ -115,7 +115,8 @@ public class WarGame {
             winner.winDeck.addCard(cardFromPlayer2);
             winner.winDeck.addCard(cardFromPlayer1);
         }
-        System.out.println(winner + " won");
+        if (tempDeckSize>2) { System.out.println(winner + " won the war"); }
+        else { System.out.println(winner + " won"); }
     }
 
     // Combine the draw action and the following declaration, according to relevant stage in the game (war/regular)
