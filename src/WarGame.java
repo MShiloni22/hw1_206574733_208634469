@@ -28,33 +28,17 @@ public class WarGame {
     }
 
     public void initializeGame(){
-        //System.out.println("entered init methode!");
         Deck beginningDeck = new Deck(true);
-        //System.out.println("new Deck created!");
         beginningDeck.shuffle();
         Collections.reverse(beginningDeck.deck);
-        System.out.println("Deck shuffled!");
-        for (int i=0 ; i<Deck.DECK_SIZE; i++)
-            System.out.println(beginningDeck.deck.get(i).toString());  //wanted to see if deck is really shuffled
-        //int beginningDeckSize = beginningDeck.deck.size();
         int beginningDeckSize = Deck.DECK_SIZE;
-        //System.out.println("size is" + beginningDeckSize);
         for (int i = 0; i < beginningDeckSize/2; i++) {
-            // also need to check if problem not caused due to it is a complicated type
-            //Card cardToPlayer1 = new Card(beginningDeck.removeTopCard());
             this.player2.gameDeck.addCard(beginningDeck.removeTopCard());
-            //Card cardToPlayer2 = new Card(beginningDeck.removeTopCard());
             this.player1.gameDeck.addCard(beginningDeck.removeTopCard());
 
         }
-        //here the problem starts //almost fixed it
-        System.out.println("Player 1's deck:");
-        for (int j=0 ; j<Deck.DECK_SIZE/2; j++)
-            System.out.println(this.player1.gameDeck.deck.get(j).toString());  //wanted to see if deck is really seperated
-        System.out.println("Player 2's deck:");
-        for (int j=0 ; j<Deck.DECK_SIZE/2; j++)
-            System.out.println(this.player2.gameDeck.deck.get(j).toString());  //wanted to see if deck is really seperated
-
+        Collections.reverse(this.player1.gameDeck.deck);
+        Collections.reverse(this.player2.gameDeck.deck);
         System.out.println("Initializing the game...");
     }
 
@@ -75,8 +59,8 @@ public class WarGame {
                 drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew ", false);
 
                 // The comparison, after each player drew a card
-                // i think here we have wrong comparison. you already drew a card. you now use the next card, no?
-                int cardCompare = player1Deck.deck.get(0).compare(player2Deck.deck.get(0));
+                int cardCompare = player1Deck.deck.get(player1Deck.deck.size()-1).
+                        compare(player2Deck.deck.get(player2Deck.deck.size()-1));
                 int tempDeckSize = player1Deck.deck.size();
                 if (cardCompare == PLAYER_1_WON){
                     cardsCollector(this.player1, tempDeckSize, this.getIsWar());
@@ -137,7 +121,7 @@ public class WarGame {
             System.out.println(message);
             return;
         }
-        System.out.println(message + currentPlayerDeck.deck.get(0));
+        System.out.println(message + currentPlayerDeck.deck.get(currentPlayerDeck.deck.size()-1));
     }
 
 }

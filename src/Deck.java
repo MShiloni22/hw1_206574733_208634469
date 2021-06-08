@@ -17,7 +17,7 @@ public class Deck {
 
 
     public void addCard(Card card) {
-        deck.add(0, card);
+        deck.add(card);
     }
 
     public void addCardByIndex(int index, Card card) {
