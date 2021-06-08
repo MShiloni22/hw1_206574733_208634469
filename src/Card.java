@@ -1,4 +1,3 @@
-
 public class Card {
     final int number;
     final boolean representPicture;

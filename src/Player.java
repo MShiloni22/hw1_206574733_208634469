@@ -11,7 +11,7 @@ public class Player {
 
     public String getName(){return this.name;}
 
-    public Card drawCard(){
+    public Card drawCard() {
         return this.gameDeck.removeTopCard();
     }
 
@@ -32,7 +32,7 @@ public class Player {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.name;
     }
 }
