@@ -32,9 +32,9 @@ public class Deck {
 
     void shuffle() {
         for (int i = 0; i < 50; i++) {
-            int rnd1 = Main.rnd.nextInt(DECK_SIZE);
-            int rnd2 = Main.rnd.nextInt(DECK_SIZE);
-            Card tmp = new Card(deck.get(rnd1)); //uses clone builder
+            int rnd1 = Main.rnd.nextInt(deck.size());
+            int rnd2 = Main.rnd.nextInt(deck.size());
+            Card tmp = deck.get(rnd1); //uses clone builder
             deck.set(rnd1, deck.get(rnd2));
             deck.set(rnd2, tmp);
         }
@@ -55,7 +55,7 @@ public class Deck {
     public Deck(Deck other) {
         this.toCreate = false;
         this.deck = new ArrayList<Card>();
-        for (int i = 0; i < DECK_SIZE; i++) {
+        for (int i = 0; i < other.deck.size(); i++) {
             this.deck.add(i, other.deck.get(i));
         }
     }
