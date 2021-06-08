@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 public class WarGame {
     Player player1;
     Player player2;
@@ -26,6 +28,7 @@ public class WarGame {
         Deck beginningDeck = new Deck(true);
         //System.out.println("new Deck created!");
         beginningDeck.shuffle();
+        Collections.reverse(beginningDeck.deck);
         System.out.println("Deck shuffled!");
         for (int i=0 ; i<Deck.DECK_SIZE; i++)
             System.out.println(beginningDeck.deck.get(i).toString());  //wanted to see if deck is really shuffled
@@ -35,9 +38,9 @@ public class WarGame {
         for (int i = 0; i < beginningDeckSize/2; i++) {
             // also need to check if problem not caused due to it is a complicated type
             //Card cardToPlayer1 = new Card(beginningDeck.removeTopCard());
-            this.player1.gameDeck.addCard(beginningDeck.removeTopCard());
-            //Card cardToPlayer2 = new Card(beginningDeck.removeTopCard());
             this.player2.gameDeck.addCard(beginningDeck.removeTopCard());
+            //Card cardToPlayer2 = new Card(beginningDeck.removeTopCard());
+            this.player1.gameDeck.addCard(beginningDeck.removeTopCard());
 
         }
         //here the problem starts //almost fixed it

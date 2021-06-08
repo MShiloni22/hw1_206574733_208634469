@@ -26,8 +26,9 @@ public class Deck {
 
 
     public Card removeTopCard() {
-        Card removed = new Card(deck.get(0)); //uses clone builder
-        deck.remove(0);
+        int deckSize = this.deck.size();
+        Card removed = new Card(deck.get(deckSize-1)); //uses clone builder
+        deck.remove(deckSize-1);
         return removed;
     }
 
@@ -39,9 +40,9 @@ public class Deck {
         for (int i = 0; i < 50; i++) {
             int rnd1 = Main.rnd.nextInt(deck.size());
             int rnd2 = Main.rnd.nextInt(deck.size());
-            Card tmp = deck.get(rnd1); //uses clone builder
-            deck.set(rnd1, deck.get(rnd2));
-            deck.set(rnd2, tmp);
+            Card tmp = deck.get(rnd2); //uses clone builder
+            deck.set(rnd2, deck.get(rnd1));
+            deck.set(rnd1, tmp);
         }
     }
 
