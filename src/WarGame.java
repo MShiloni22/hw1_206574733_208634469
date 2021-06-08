@@ -24,8 +24,11 @@ public class WarGame {
     public void initializeGame(){
         Deck beginningDeck = new Deck(true);
         beginningDeck.shuffle();
+        /*for (int i=0 ; i<beginningDeck.DECK_SIZE; i++)
+            (beginningDeck.deck(i)).toString;*/  //wanted to see if deck is really shuffled
         int beginningDeckSize = beginningDeck.deck.size();
         for (int i = 0; i < beginningDeckSize/2; i++) {
+            // also need to check if problem not caused due to it is a complicated type
             Card cardToPlayer1 = beginningDeck.removeTopCard();
             this.player1.gameDeck.addCard(cardToPlayer1);
             Card cardToPlayer2 = beginningDeck.removeTopCard();
@@ -53,6 +56,7 @@ public class WarGame {
                         + player2Deck.deck.get(0));
 
                 // The comparison, after each player drew a card
+                // i think here we have wrong comparison. you already drew a card. you now use the next card, no?
                 int cardCompare = player1Deck.deck.get(0).compare(player2Deck.deck.get(0));
                 int tempDeckSize = player1Deck.deck.size();
                 if (cardCompare == PLAYER_1_WON){

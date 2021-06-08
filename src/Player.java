@@ -25,6 +25,7 @@ public class Player {
             int winDeckSize = this.winDeck.deck.size();
             for (int i = 0; i < winDeckSize; i++) {
                 this.winDeck.removeTopCard();
+                //System.out.println("this win deck is now empty!\n"); //???
             }
         }
         return false;
