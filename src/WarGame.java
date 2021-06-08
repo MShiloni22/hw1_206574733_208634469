@@ -64,10 +64,8 @@ public class WarGame {
                     "-------------------------");
             boolean isRoundFinished = false;
             while (!isRoundFinished){
-                drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew "
-                        + player1Deck.deck.get(0));
-                drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew "
-                        + player2Deck.deck.get(0));
+                drawAndDeclare(this.player1, this.player1Deck, this.player1 + " drew ");
+                drawAndDeclare(this.player2, this.player2Deck, this.player2 + " drew ");
 
                 // The comparison, after each player drew a card
                 // i think here we have wrong comparison. you already drew a card. you now use the next card, no?
@@ -118,6 +116,6 @@ public class WarGame {
     // Combine the draw action and the following declaration, according to relevant stage in the game (war/regular)
     public void drawAndDeclare(Player currentPlayer, Deck currentPlayerDeck, String message){
         currentPlayerDeck.addCard(currentPlayer.drawCard());
-        System.out.println(message);
+        System.out.println(message + currentPlayerDeck.deck.get(0));
     }
 }
