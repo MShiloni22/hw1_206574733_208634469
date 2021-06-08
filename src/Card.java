@@ -24,7 +24,24 @@ public class Card {
 
     @Override
     public String toString (){
-        return this.number + " of " + this.shape;
+        if (!this.representPicture){
+            return (this.number + " of " + this.shape);
+        }
+
+        else if (this.number == 11){
+                return ("Jack of " + this.shape);
+            }
+        else if (this.number == 12){
+            return ("Queen of " + this.shape);
+        }
+
+        else if (this.number == 13){
+            return ("King of " + this.shape);
+        }
+
+        else{
+            return ("Ace of " + this.shape);
+        }
     }
 
     public Card(int number, String shape){

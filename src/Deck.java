@@ -20,6 +20,11 @@ public class Deck {
         deck.add(0, card);
     }
 
+    public void addCardByIndex(int index, Card card) {
+        deck.add(index, card);
+    }
+
+
     public Card removeTopCard() {
         Card removed = new Card(deck.get(0)); //uses clone builder
         deck.remove(0);
