@@ -4,26 +4,11 @@ public class Deck {
     boolean toCreate;
     public ArrayList<Card> deck;
     public static final int DECK_SIZE = 52;
-    public static final int SHAPES_AMOUNT = 4;
     public static final int NUMBERS_AMOUNT = 13;
-
-    public boolean getToCreate() {
-        return this.toCreate;
-    }
-
-    public void setToCreate(boolean bool) {
-        this.toCreate = bool;
-    }
-
 
     public void addCard(Card card) {
         deck.add(card);
     }
-
-    public void addCardByIndex(int index, Card card) {
-        deck.add(index, card);
-    }
-
 
     public Card removeTopCard() {
         int deckSize = this.deck.size();
@@ -46,16 +31,6 @@ public class Deck {
         }
     }
 
-    void upsideDownDeck(){
-        int size = this.deck.size();
-        for (int i=0; i < size/2 /*?*/; i++){
-            Card tmp = this.deck.get(i); //int tmp = a[0]
-            this.deck.set(i, this.deck.get(size-1-i)); //a[0] = a[size-1]
-            this.deck.set(size-i-1, tmp);//a[size-1] = tmp
-        }
-
-    }
-
     public Deck(boolean toCreate) {
         this.deck = new ArrayList<>();
         this.toCreate = toCreate;
@@ -70,7 +45,7 @@ public class Deck {
 
     public Deck(Deck other) {
         this.toCreate = false;
-        this.deck = new ArrayList<Card>();
+        this.deck = new ArrayList<>();
         for (int i = 0; i < other.deck.size(); i++) {
             this.deck.add(i, other.deck.get(i));
         }
