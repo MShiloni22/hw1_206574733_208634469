@@ -22,18 +22,32 @@ public class WarGame {
     }
 
     public void initializeGame(){
+        //System.out.println("entered init methode!");
         Deck beginningDeck = new Deck(true);
+        //System.out.println("new Deck created!");
         beginningDeck.shuffle();
-        /*for (int i=0 ; i<beginningDeck.DECK_SIZE; i++)
-            (beginningDeck.deck(i)).toString;*/  //wanted to see if deck is really shuffled
-        int beginningDeckSize = beginningDeck.deck.size();
+        System.out.println("Deck shuffled!");
+        for (int i=0 ; i<Deck.DECK_SIZE; i++)
+            System.out.println(beginningDeck.deck.get(i).toString());  //wanted to see if deck is really shuffled
+        //int beginningDeckSize = beginningDeck.deck.size();
+        int beginningDeckSize = Deck.DECK_SIZE;
+        //System.out.println("size is" + beginningDeckSize);
         for (int i = 0; i < beginningDeckSize/2; i++) {
             // also need to check if problem not caused due to it is a complicated type
-            Card cardToPlayer1 = beginningDeck.removeTopCard();
-            this.player1.gameDeck.addCard(cardToPlayer1);
-            Card cardToPlayer2 = beginningDeck.removeTopCard();
-            this.player1.gameDeck.addCard(cardToPlayer2);
+            //Card cardToPlayer1 = new Card(beginningDeck.removeTopCard());
+            this.player1.gameDeck.addCard(beginningDeck.removeTopCard());
+            //Card cardToPlayer2 = new Card(beginningDeck.removeTopCard());
+            this.player2.gameDeck.addCard(beginningDeck.removeTopCard());
+
         }
+        //here the problem starts //almost fixed it
+        System.out.println("Player 1's deck:");
+        for (int j=0 ; j<Deck.DECK_SIZE/2; j++)
+            System.out.println(this.player1.gameDeck.deck.get(j).toString());  //wanted to see if deck is really seperated
+        System.out.println("Player 2's deck:");
+        for (int j=0 ; j<Deck.DECK_SIZE/2; j++)
+            System.out.println(this.player2.gameDeck.deck.get(j).toString());  //wanted to see if deck is really seperated
+
         System.out.println("Initializing the game...");
     }
 

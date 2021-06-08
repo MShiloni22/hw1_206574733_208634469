@@ -20,12 +20,13 @@ public class Player {
             if (this.winDeck.isEmpty()) return true;
 
             // If winDeck isn't empty, do the following (and eventually return true):
-            this.winDeck.shuffle();
-            this.gameDeck = this.winDeck;
+            this.winDeck.shuffle(); //shuffle winDeck
+            this.gameDeck = new Deck(this.winDeck); //move winDeck to gameDeck
+            //empty winDeck
             int winDeckSize = this.winDeck.deck.size();
             for (int i = 0; i < winDeckSize; i++) {
                 this.winDeck.removeTopCard();
-                //System.out.println("this win deck is now empty!\n"); //???
+                //System.out.println("win deck is now empty!\n"); //???
             }
         }
         return false;
