@@ -4,22 +4,8 @@ public class Card {
     final boolean representPicture;
     final String shape;
 
-    public int getNumber(){
-        return number;
-    }
-
-    public String getShape(){
-        return shape;
-    }
-
-    public boolean getRepresentPicture(){
-        return representPicture;
-    }
-
     public int compare (Card other){
-        if (this.number < other.number) return -1;
-        else if (this.number > other.number) return 1;
-        else return 0;
+        return Integer.compare(this.number, other.number);
     }
 
     @Override
