@@ -41,10 +41,8 @@ public class Deck {
         this.toCreate = toCreate;
         if (this.toCreate) {
             for (Shape shape : Shape.values()) {
-                for (int j = 0; j < SHAPES_AMOUNT; j++) {
-                    for (int i = 1; i < NUMBERS_AMOUNT; i++) {
-                        deck.add(new Card(i, shape.getSymbol()));
-                    }
+                for (int i = 1; i <= NUMBERS_AMOUNT; i++) {
+                    deck.add(new Card(i, shape.getSymbol()));
                 }
             }
         }

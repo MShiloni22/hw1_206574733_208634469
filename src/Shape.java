@@ -1,4 +1,4 @@
-enum Shape{
+public enum Shape {
     SPADE("♠"),
     DIAMOND("♦"),
     CLUB("♣"),
@@ -6,11 +6,11 @@ enum Shape{
 
     private final String symbol;
 
-    Shape (String symbol){
+    Shape(String symbol) {
         this.symbol = symbol;
     }
 
-    public String getSymbol(){
+    public String getSymbol() {
         return this.symbol;
     }
 }
