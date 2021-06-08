@@ -35,9 +35,11 @@ public class WarGame {
         for (int i = 0; i < beginningDeckSize/2; i++) {
             // also need to check if problem not caused due to it is a complicated type
             //Card cardToPlayer1 = new Card(beginningDeck.removeTopCard());
-            this.player1.gameDeck.addCard(beginningDeck.removeTopCard());
-            //Card cardToPlayer2 = new Card(beginningDeck.removeTopCard());
             this.player2.gameDeck.addCard(beginningDeck.removeTopCard());
+            this.player1.gameDeck.upsideDownDeck();
+            //Card cardToPlayer2 = new Card(beginningDeck.removeTopCard());
+            this.player1.gameDeck.addCard(beginningDeck.removeTopCard());
+            this.player2.gameDeck.upsideDownDeck();
 
         }
         //here the problem starts //almost fixed it
